@@ -4,6 +4,7 @@ import java.util.Scanner;
 public class cryptouser{
    public function askuser(){
 //taking user input
+//test bipi
     Scanner input = new Scanner(System.in);
     System.out.println("Enter plain text");
     String pt = input.nextLine();
