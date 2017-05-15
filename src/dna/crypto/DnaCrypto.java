@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package finalproject;
+package dna.crypto;
 
 import java.util.*;
 
@@ -12,8 +12,8 @@ import java.util.*;
  *
  * @author bipin
  */
-public class Finalproject {
-    static String[] fp;
+public class DnaCrypto {
+ static String[] fp;
     public static String[] plaintext(){
        Scanner sn=new Scanner(System.in);
        String sp;
@@ -37,5 +37,5 @@ public class Finalproject {
         String[] r=plaintext();
         System.out.println(r);
     }
-   
+    
 }
