@@ -12,6 +12,7 @@ import java.util.Scanner;
  * @author bipin
  */
 public class Initial_Page extends javax.swing.JFrame {
+//    public variable initialization
 static String[] cipheredtext;
     /**
      * Creates new form Initial_Page
@@ -156,22 +157,21 @@ static String[] cipheredtext;
     private void EncryptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EncryptActionPerformed
         // TODO add your handling code here:
          try {
-         Scanner sn=new Scanner(System.in);
-       String sp;
-       char[] pt;
+//             start of try catch method 
+//         Scanner sn=new Scanner(System.in);
+       String texts; //variable to take input from user plaintext
+       char[] pt; // char array
        
 //       System.out.println("enter plaintext");
 //       sp=sn.nextLine();
-       sp=plaintext.getText();
-       pt=sp.toCharArray();
-       int l=pt.length;
-       int k;
-       String cipheredtext;
+       texts=plaintext.getText(); //input taken from textfield
+       pt=texts.toCharArray(); //convert to plaintext
+       int l=pt.length; // length of characters
+       int k; //random integer variable
+       String cipheredtext; //expected output
      
        for(int i=0;i<l;i++){
-//           fp[i]=String.valueOf(  pt[i]);
-//           System.out.println( fp[i]);
-//           pt[i]=Integer.toString((int) pt[i]);
+
           k=(int) pt[i];
           if(k>=97 && k <=122){
            k=k-26;
