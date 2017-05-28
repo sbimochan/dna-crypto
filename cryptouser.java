@@ -10,7 +10,8 @@ public class cryptouser{
      //asking for key
          System.out.println("Enter your key");
          String key=input.nextLine();
-         alphabets();
+
+         //
 }
 
   //creating array
@@ -20,7 +21,7 @@ public class cryptouser{
     // for (char element: alphabets){
     //   System.out.println(element);
     // }
-      System.out.println(alphabets[0]);
+    //  System.out.println(alphabets[0]);
   }
 
 
