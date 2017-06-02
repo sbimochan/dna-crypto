@@ -1,6 +1,3 @@
-
-import java.util.Scanner;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -11,13 +8,12 @@ import java.util.Scanner;
  *
  * @author bipin
  */
-public class Initial_Page extends javax.swing.JFrame {
-//    public variable initialization
-static String[] cipheredtext;
+public class Decrypt extends javax.swing.JFrame {
+
     /**
-     * Creates new form Initial_Page
+     * Creates new form Decrypt
      */
-    public Initial_Page() {
+    public Decrypt() {
         initComponents();
     }
 
@@ -34,25 +30,25 @@ static String[] cipheredtext;
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        plaintext = new javax.swing.JTextArea();
+        ciphertext = new javax.swing.JTextArea();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         keys = new javax.swing.JTextArea();
-        Encrypt = new javax.swing.JButton();
+        decrypt = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        ciphertext = new javax.swing.JTextArea();
+        plaintext = new javax.swing.JTextArea();
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButton1.setText("DNA CRYPTO");
 
-        jLabel1.setText("PlainText");
+        jLabel1.setText("Ciphertext");
 
-        plaintext.setColumns(20);
-        plaintext.setRows(5);
-        jScrollPane1.setViewportView(plaintext);
+        ciphertext.setColumns(20);
+        ciphertext.setRows(5);
+        jScrollPane1.setViewportView(ciphertext);
 
         jLabel2.setText("Key");
 
@@ -60,20 +56,20 @@ static String[] cipheredtext;
         keys.setRows(5);
         jScrollPane2.setViewportView(keys);
 
-        Encrypt.setText("Encrypt");
-        Encrypt.addActionListener(new java.awt.event.ActionListener() {
+        decrypt.setText("Decrypt");
+        decrypt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EncryptActionPerformed(evt);
+                decryptActionPerformed(evt);
             }
         });
 
-        jLabel4.setText("Ciphertext");
+        jLabel4.setText("Plaintext");
 
-        ciphertext.setColumns(20);
-        ciphertext.setRows(5);
-        jScrollPane3.setViewportView(ciphertext);
+        plaintext.setColumns(20);
+        plaintext.setRows(5);
+        jScrollPane3.setViewportView(plaintext);
 
-        jButton2.setText("Decrypt");
+        jButton2.setText("Encrypt");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -105,7 +101,7 @@ static String[] cipheredtext;
                                         .addGap(18, 18, 18)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(Encrypt, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                            .addComponent(decrypt, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(73, 73, 73)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -135,12 +131,15 @@ static String[] cipheredtext;
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)))
-                .addComponent(Encrypt, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28))
+                .addComponent(decrypt, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(48, 48, 48)
+                        .addComponent(jLabel4))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -161,160 +160,143 @@ static String[] cipheredtext;
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void EncryptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EncryptActionPerformed
+    private void decryptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_decryptActionPerformed
         // TODO add your handling code here:
-         try {
-              
-//             start of try catch method 
-//         Scanner sn=new Scanner(System.in);
-       String texts; //variable to take input from user plaintext
-       char[] pt; // char array
-       
-       
-//       System.out.println("enter plaintext");
-//       sp=sn.nextLine();
-//       texts=plaintext.getText(); //input taken from textfield
-       texts=plaintext.getText();
-       pt=texts.toCharArray(); //convert to plaintext
-       int l=pt.length; // length of characters
-       int k; //random integer variable
-       String cipheredtext; //expected output
-     
-       for(int i=0;i<l;i++){
-
-          k=(int) pt[i]; 
-          if(k>=97 && k <=122){
-           k=k-26;
-           if(k<97){
-               int m=97-k;
-               k=96+m;
-           }
-           pt[i]=(char) k;
-//          System.out.println(pt[i]);
-        }
-          else if(k>=65 && k <=90){
-           k=k-26;
-           if(k<65){
-               int m=65-k;
-               k=64+m;
-           }
-           pt[i]=(char) k;
-//          System.out.println(pt[i]);
-        }
-          else if(k==32){
-              k=32;
-              pt[i]=(char) k;
-          }
-//          System.out.println(pt[i]);
-       }
-       cipheredtext=new String(pt);
-//       System.out.println(cipheredtext);
-       //print ascii value of char
-       
-//       ciphertext.setText(cipheredtext);
-       //plaintext binary
-       char[] pb;
-       String plainbin="";
-       pb=cipheredtext.toCharArray();
-       for(int i=0;i<pb.length;i++){
-//            System.out.println(pb[i]);
-            int tt=(int) pb[i];
-          
-         if(tt==32){
-            plainbin=plainbin+("00"+Integer.toBinaryString((int) pb[i]));  
-         }
-         else{
-             plainbin=plainbin+(0+Integer.toBinaryString(tt));
-         }
-       }
-       System.out.println(plainbin);
-       //key binary
-       String key=keys.getText();
-       String xortext;
-        String keybin="";
-        char[] kb;
-        kb=key.toCharArray();
-        for(int i=0;i<kb.length;i++){
-            int tk=(int) kb[i];
-            if(tk==32){
-             keybin=keybin+("00"+ Integer.toBinaryString(tk));   
+        try {
+            String ct=ciphertext.getText(); //get siphertext
+            int ln=ct.length(); //length of ciphertext
+//            int ln1=ln/2; // divide length to take dna index 00 -> A 01 ->T
+            int k=0,l=1; //
+            String bin,dnaval="";
+            for(int i=0;i<ln;i++){
+                bin=ct.substring(k,l); //taking single element like A, T, C, G
+//                System.out.println(bin);
+                k=k+1;
+                l=l+1;
+                //convert A ->00 T->01 C->10 G->11 with switch case (binary format)
+                switch(bin){
+                        case "A":
+                        dnaval=dnaval+"00";
+                       
+                        break;
+                        case "T":
+                        dnaval=dnaval+"01";
+                        break;
+                        case "C":
+                        dnaval=dnaval+"10";
+                        break;
+                        case "G":
+                        dnaval=dnaval+"11";
+                        break;
+                        default:
+                        continue;
+                                  
+                        
+                        
+                }
             }
-            else{
+        String ky=keys.getText();//key provided by user to encrypt and decrypt must be same   
+        String keybin="";  
+        char[] kb; //charArray
+         String result="";
+        kb=ky.toCharArray(); //string to charArray
+        for(int i2=0;i2<kb.length;i2++){
+            int tk=(int) kb[i2];
+            if(tk==32){
+              keybin=keybin+("00"+ Integer.toBinaryString(tk));  
+            }
+            else
+            {
                 keybin=keybin+(0+ Integer.toBinaryString(tk));
             }
-            
+             
+            //key into binary format 01110001
         }
 //       System.out.println(keybin);
-       //xor key and plaintext
-       StringBuilder sb = new StringBuilder();
-
-for(int i = 0; i < keybin.length(); i++){
-    sb.append((plainbin.charAt(i) ^ keybin.charAt(i)));
-
-
+       for(int xx = 0; xx < keybin.length(); xx++){
+    result=result+((dnaval.charAt(xx) ^ keybin.charAt(xx)));
+    // xor key and ciphertext in binary format
 }
-String result = sb.toString();
-//System.out.println(result); 
-   //xor result printed
-//       xortext="bipin";
-//       
-//     char[] rt;//replaced text array
-//     rt=xortext.toCharArray();
-     int ln=result.length();//legnth of replacedtext array
-     int ln1=ln/2;
-//     for(int j=0;j<ln;j++){
-//         String bb=0+Integer.toBinaryString((int) rt[j]);//binary value 0 is added to make 8 bit 
-         int kk=0,kl=2;
-         String dna;
-         String dnaop="";
-         for(int ll=0;ll<ln1;ll++){
-         dna=result.substring(kk,kl);//dividing into 2/2 bit binary value
-         kk=kk+2;
-         kl=kl+2;
-        
-         switch(dna){
-             case "00":
-                  dnaop=dnaop+"A";
-//                 System.out.println("A");
-                 break;
-               case "01":
-                   dnaop=dnaop+"T";
-//                 System.out.println("T");
-                 break;
-                   case "10":
-                       dnaop=dnaop+"C";
-//                 System.out.println("C");
-                 break;
-                       case "11":
-                           dnaop=dnaop+"G";
-//                 System.out.println("G");
-                 break;
-                       default:
-                           continue;
-         
-         }
-         
-//         }
-//       System.out.println(bb);  
+//String result = sb.toString();
+//System.out.println(result); //result after xor               
+//                plaintext.setText(dnaval);
+                //binary value output
+                //to produce char
+//                result="0110100001100101011011000110110001101111";
+                int lt=(result.length())/8; 
+                // to convert binary to ascii and char divide into each of length 8 bits
+//                System.out.println(lt);
+                String chh,ptt="";
+                int x=0,y=8;
+                for(int i1=0;i1<lt;i1++){
+                    chh=result.substring(x,y); //8 bit binary taken to convert to ascii                    
+                    int a=Integer.parseInt(chh,2); //ascii value
+                    ptt=ptt+ (char) a; //store as char in string
+//                     System.out.println(ptt);
+                    x=x+8;y=y+8;
+                    
+                }
+//                plaintext.setText(pt);
+                //   ATACATAGATCTATCTAATA
+//            System.out.println(pt);
+         char[] pt1;       
+      pt1=ptt.toCharArray(); //convert to plaintext
+       int ll=pt1.length; // length of characters
+//       System.out.println((int) ptt);
+       int k2; //random integer variable
+       String pltext=""; //expected output
      
-     //ascii end
+       for(int im=0;im<ll;im++){
+
+          k2= pt1[im]; 
+//         System.out.println(k2);
+          //replacement
+         
+          if(k2>=97 && k2 <=122){
+           k2=k2-26;
+           if(k2<97){
+               int m=97-k2;
+               k2=96+m;
+           }
+           pt1[im]=(char) k2;
+//          System.out.println(pt[i]);
+        }
+          else if(k2>=65 && k2 <=90){
+           k2=k2-26;
+           if(k2<65){
+               int m=65-k2;
+               k2=64+m;
+           }
+           pt1[im]=(char) k2;
         
-     }
-//         System.out.println(dnaop);
-         ciphertext.setText(dnaop);
-         }
-    
-         catch(Exception e){
-    System.out.println(e);
-    
-}
-    }//GEN-LAST:event_EncryptActionPerformed
+        }
+          else if(k2==32 ){
+              k2=32;
+              pt1[im]=(char) k2;
+          }
+           else if(k2==54 ){
+              k2=54;
+              pt1[im]=(char) k2;
+          }
+//            System.out.println(pt1[im]);
+          pltext=pltext+pt1[im];
+       }
+            
+          plaintext.setText(pltext);  
+          
+        }
+
+        catch(Exception e){
+            System.out.println(e);
+
+        }
+    }//GEN-LAST:event_decryptActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         dispose();
-        Decrypt dd1=new Decrypt();
-        dd1.setVisible(true);
+        Initial_Page dd=new Initial_Page();
+        dd.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -334,39 +316,39 @@ String result = sb.toString();
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Initial_Page.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Decrypt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Initial_Page.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Decrypt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Initial_Page.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Decrypt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Initial_Page.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Decrypt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
-        /* Create and display the form */
-//    String lseq = "0011111111101111111111111100101101111100110000001011111000010100";
-//String tseq = "0011111111100000110011001100110011001100110011001100110011001100";
+//         String s = "0110100001100101011011000110110001101111";
+//    String str = "",kl;
+//int k=0,l=8;
+//    for (int i = 0; i < s.length()/8; i++) {
+//kl=s.substring(k,l);
+//k=k+8;l=l+8;
+//        int a = Integer.parseInt(kl,2);
+//        str += (char)(a);
+//    }
 //
-//StringBuilder sb = new StringBuilder();
-//
-//for(int i = 0; i < lseq.length(); i++)
-//    sb.append((lseq.charAt(i) ^ tseq.charAt(i)));
-//
-//String result = sb.toString();
-//System.out.println(result);
-      
+//    System.out.println(str);
         
+        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Initial_Page().setVisible(true);
+                new Decrypt().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Encrypt;
     private javax.swing.JTextArea ciphertext;
+    private javax.swing.JButton decrypt;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
