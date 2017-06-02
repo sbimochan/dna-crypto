@@ -157,6 +157,7 @@ static String[] cipheredtext;
     private void EncryptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EncryptActionPerformed
         // TODO add your handling code here:
          try {
+              
 //             start of try catch method 
 //         Scanner sn=new Scanner(System.in);
        String texts; //variable to take input from user plaintext
@@ -172,7 +173,7 @@ static String[] cipheredtext;
      
        for(int i=0;i<l;i++){
 
-          k=(int) pt[i];
+          k=(int) pt[i]; 
           if(k>=97 && k <=122){
            k=k-26;
            if(k<97){
@@ -198,9 +199,44 @@ static String[] cipheredtext;
        }
        cipheredtext=new String(pt);
 //       System.out.println(fp);
+       //print ascii value of char
        ciphertext.setText(cipheredtext);
+     char[] rt;//replaced text array
+     rt=cipheredtext.toCharArray();
+     int ln=rt.length;//legnth of replacedtext array
+     for(int j=0;j<ln;j++){
+         String bb=0+Integer.toBinaryString((int) rt[j]);//binary value 0 is added to make 8 bit 
+         int kk=0,kl=2;
+         String dna;
+         for(int ll=0;ll<4;ll++){
+         dna=bb.substring(kk,kl);//dividing into 2/2 bit binary value
+         kk=kk+2;
+         kl=kl+2;
+         switch(dna){
+             case "00":
+                 System.out.println("A");
+                 break;
+               case "01":
+                 System.out.println("T");
+                 break;
+                   case "10":
+                 System.out.println("C");
+                 break;
+                       case "11":
+                 System.out.println("G");
+                 break;
+                       default:
+                           continue;
+         
+         }
+         
+         }
+       System.out.println(bb);  
      
-    }
+     //ascii end
+     }
+         }
+    
          catch(Exception e){
     System.out.println(e);
     
@@ -235,6 +271,7 @@ static String[] cipheredtext;
         //</editor-fold>
 
         /* Create and display the form */
+       
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Initial_Page().setVisible(true);
